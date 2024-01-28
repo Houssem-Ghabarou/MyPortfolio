@@ -3,7 +3,8 @@ import { useTheme } from "./context/ThemeContext";
 
 import { Icon } from "@iconify/react";
 function App() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, enableSystemMode, toggleEnableSystemMode } =
+    useTheme();
   return (
     <div className={`h-screen ${theme === "dark" ? "bg-dark" : "bg-light"} `}>
       <nav className='bg-gray-500 p-4 flex '>
