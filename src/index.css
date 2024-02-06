@@ -1,13 +1,19 @@
-@import url('https://fonts.cdnfonts.com/css/varuna');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
 
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer components {
+  .li-style {
+    @apply p-4 border-r-borderColor border-r-2 hover:text-secondary;
+  }
+
+
+  .border-bottom-effect {
+    @apply hover:border-b-borderBottomColor hover:border-b-2;
+  }
+
+
 }

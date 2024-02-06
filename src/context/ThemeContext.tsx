@@ -18,10 +18,10 @@ interface ThemeContextProps {
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [enableSystemMode, setEnableSystemMode] = useState<boolean>(true);
+  const [enableSystemMode, setEnableSystemMode] = useState<boolean>(false);
   const [theme, setTheme] = useState<Theme>(() => {
     const savedTheme = localStorage.getItem("theme") as Theme | null;
-    return savedTheme ?? "light";
+    return savedTheme ?? "dark";
   });
 
   function toggleTheme() {
