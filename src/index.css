@@ -16,4 +16,8 @@
   }
 
 
+  .li-mode {
+    @apply flex py-1 px-2 items-center cursor-pointer rounded-md hover:bg-primary;
+  }
+
 }

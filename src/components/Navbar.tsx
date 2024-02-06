@@ -1,9 +1,5 @@
-import { useTheme } from "../context/ThemeContext";
-
-import { Icon } from "@iconify/react";
+import Mode from "./Mode";
 const Navbar = () => {
-  const { theme, toggleTheme, enableSystemMode, toggleEnableSystemMode } =
-    useTheme();
   return (
     <nav className='bg-gray-500  flex border-solid  border-b-borderColor border-b-2  '>
       <div className='flex justify-between w-[100%]'>
@@ -28,18 +24,8 @@ const Navbar = () => {
               <a href='/contact'>_contact-me</a>
             </li>
           </ul>
-          <button
-            onClick={toggleTheme}
-            className={`ml-auto text-white p-2 rounded ${
-              theme === "dark" ? "bg-magneta " : "bg-primary"
-            } `}
-          >
-            {theme === "light" ? (
-              <Icon icon='mingcute:sun-fill' className='text-2xl' />
-            ) : (
-              <Icon icon='mingcute:moon-fill' className='text-2xl' />
-            )}
-          </button>
+          {/* dark, light, system mode */}
+          <Mode />
         </div>
       </div>
     </nav>

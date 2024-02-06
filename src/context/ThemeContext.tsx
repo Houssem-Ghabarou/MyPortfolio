@@ -13,6 +13,7 @@ interface ThemeContextProps {
   toggleTheme: () => void;
   enableSystemMode: boolean;
   toggleEnableSystemMode: () => void;
+  selectTheme: (theme: Theme) => void;
 }
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
@@ -28,19 +29,34 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     setTheme(theme === "light" ? "dark" : "light");
   }
 
+  function selectTheme(theme: Theme) {
+    setTheme(theme);
+    setEnableSystemMode(false);
+    localStorage.setItem("systemMode", "false");
+  }
+
   function toggleEnableSystemMode() {
-    setEnableSystemMode((prev) => !prev);
+    setEnableSystemMode(true);
+    localStorage.setItem("systemMode", "true");
   }
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    const enableSystemModeLocalstorage =
+      localStorage.getItem("systemMode") === "true";
+
+    if (enableSystemModeLocalstorage) {
+      setEnableSystemMode(true);
+    }
+  }, []);
+
   //   Use matchMedia to detect system color scheme changes
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as Theme | null;
 
-    console.log(savedTheme, "saved");
     if (!savedTheme || enableSystemMode) {
       const darkModeMediaQuery = window.matchMedia(
         "(prefers-color-scheme: dark)"
@@ -61,10 +77,16 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         darkModeMediaQuery.removeEventListener("change", handleChange);
       };
     }
-  }, []);
+  }, [enableSystemMode]);
   return (
     <ThemeContext.Provider
-      value={{ theme, toggleTheme, enableSystemMode, toggleEnableSystemMode }}
+      value={{
+        theme,
+        toggleTheme,
+        enableSystemMode,
+        toggleEnableSystemMode,
+        selectTheme,
+      }}
     >
       {children}
     </ThemeContext.Provider>

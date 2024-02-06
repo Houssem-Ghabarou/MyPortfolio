@@ -3,8 +3,7 @@ import Navbar from "./components/Navbar";
 import { useTheme } from "./context/ThemeContext";
 
 function App() {
-  const { theme, toggleTheme, enableSystemMode, toggleEnableSystemMode } =
-    useTheme();
+  const { theme } = useTheme();
 
   return (
     <div className={`h-screen ${theme === "dark" ? "bg-dark" : "bg-light"} `}>
