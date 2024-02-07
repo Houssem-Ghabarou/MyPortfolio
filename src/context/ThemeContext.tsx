@@ -52,8 +52,14 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       setEnableSystemMode(true);
     }
   }, []);
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
 
-  //   Use matchMedia to detect system color scheme changes
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as Theme | null;
 
@@ -62,17 +68,14 @@ const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         "(prefers-color-scheme: dark)"
       );
 
-      // Set initial theme based on system color scheme
       setTheme(darkModeMediaQuery.matches ? "dark" : "light");
 
-      // Listen for changes in system color scheme
       const handleChange = (e: MediaQueryListEvent) => {
         setTheme(e.matches ? "dark" : "light");
       };
 
       darkModeMediaQuery.addEventListener("change", handleChange);
 
-      // Cleanup event listener on component unmount
       return () => {
         darkModeMediaQuery.removeEventListener("change", handleChange);
       };

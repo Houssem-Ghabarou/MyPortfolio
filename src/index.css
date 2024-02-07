@@ -7,9 +7,12 @@
 
 @layer components {
   .li-style {
-    @apply p-4 border-r-borderColor border-r-2 hover:text-secondary;
+    @apply hidden md:block p-4 border-b-2 border-b-borderColor md:border-r-borderColor md:border-r-2 md:border-b-0 hover:text-secondary;
   }
 
+  .contact-style {
+    @apply hidden md:block p-4 border-b-2 border-b-borderColor w-[100%] md:border-l-2 md:border-b-0 border-bottom-effect border-borderColor hover:text-secondary;
+  }
 
   .border-bottom-effect {
     @apply hover:border-b-borderBottomColor hover:border-b-2;

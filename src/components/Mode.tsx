@@ -7,7 +7,7 @@ const Mode = () => {
   const { theme, selectTheme, enableSystemMode, toggleEnableSystemMode } =
     useTheme();
 
-  const [toggleSelection, setToggleSelection] = useState(false);
+  const [toggleSelection, setToggleSelection] = useState<boolean>(false);
 
   const toggleSelectionHandler = () => {
     setToggleSelection(!toggleSelection);

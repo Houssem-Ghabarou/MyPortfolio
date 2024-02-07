@@ -15,6 +15,19 @@ export default {
       borderColor: "rgba(96,123,150, 0.25)",
     },
   },
-  darkMode: "class",
+  darkMode: "class", // Enable dark mode variants
+  variants: {
+    extend: {
+      backgroundColor: [
+        "dark",
+        "dark-hover",
+        "dark-group-hover",
+        "dark-even",
+        "dark-odd",
+      ],
+      borderColor: ["dark", "dark-focus", "dark-focus-within"],
+      textColor: ["dark", "dark-hover", "dark-active"],
+    },
+  },
   plugins: [],
 };
